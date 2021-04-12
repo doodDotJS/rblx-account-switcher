@@ -6,7 +6,7 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["storage", "activeTab", "scripting", "cookies"],
+  "permissions": ["storage", "activeTab", "scripting", "cookies", "tabs"],
   "host_permissions": ["https://www.roblox.com/*"],
   "action": {
     "default_popup": "index.html"

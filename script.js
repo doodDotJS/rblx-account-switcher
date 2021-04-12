@@ -2,6 +2,8 @@ const switchAccountButton = document.getElementById("switch-account-button");
 const mainOptions = document.getElementById("main-options");
 const switchAccountOptions = document.getElementById("switch-account-options");
 
+import switchAccountMenuCode from "./switchAccountMenu.js";
+
 switchAccountButton.onclick = function () {
   getAccounts(function (accounts) {
     mainOptions.style.display = "none";
@@ -12,8 +14,10 @@ switchAccountButton.onclick = function () {
     accounts.forEach((obj) => {
       const li = document.createElement("li");
       li.innerText = obj.username;
+      li.classList.add("user-button");
       switchAccountOptions.append(li);
     });
+    switchAccountMenuCode();
   });
 };
 
