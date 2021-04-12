@@ -6,7 +6,14 @@ switchAccountButton.onclick = function () {
   getAccounts(function (accounts) {
     mainOptions.style.display = "none";
     switchAccountOptions.style.display = "flex";
-    if (accounts.length == 0) switchAccountOptions.innerText = "No accounts!";
+    if (accounts.length == 0)
+      return (switchAccountOptions.innerText = "No accounts!");
+
+    accounts.forEach((obj) => {
+      const li = document.createElement("li");
+      li.innerText = obj.username;
+      switchAccountOptions.append(li);
+    });
   });
 };
 
