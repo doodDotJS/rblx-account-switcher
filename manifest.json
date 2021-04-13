@@ -2,13 +2,20 @@
   "name": "RBLX Account Switcher",
   "description": "A chrome extension which allows you to switch between different roblox accounts.",
   "version": "1.0",
-  "manifest_version": 3,
+  "manifest_version": 2,
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["background.js"],
+    "persistent": false
   },
-  "permissions": ["storage", "activeTab", "scripting", "cookies", "tabs"],
-  "host_permissions": ["https://www.roblox.com/*"],
-  "action": {
+  "permissions": [
+    "storage",
+    "activeTab",
+    "cookies",
+    "tabs",
+    "notifications",
+    "https://*.roblox.com/*"
+  ],
+  "browser_action": {
     "default_popup": "index.html"
   }
 }
