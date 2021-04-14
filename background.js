@@ -4,7 +4,6 @@ chrome.runtime.onInstalled.addListener(() => {
     accounts: [
       {
         username: "dudeSafiyur1234",
-        userId: 1234567890,
         cookie:
           "_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.HEU3YJMDHJH2GH UR MUM ",
       },
@@ -12,7 +11,7 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
-chrome.runtime.onMessage.addListener(async (msg, caller, sendResponse) => {
+chrome.runtime.onMessage.addListener((msg, caller, sendResponse) => {
   if (
     msg.from == "switchAccountMenu" &&
     msg.whatToDo == "setCookieAndCreateTab"
@@ -45,13 +44,31 @@ chrome.runtime.onMessage.addListener(async (msg, caller, sendResponse) => {
   }
 
   if (msg.from == "addAccountMenu") {
-    const res = await axios({
+    sendResponse({ response: "hi" });
+
+    axios({
       method: "get",
       url: "https://random-data-api.com/api/users/random_user",
+    }).then((res) => {
+      console.log(res);
     });
 
-    console.log(res);
+    (async () => {
+      console.log("async func");
+      const res = await axios({
+        method: "get",
+        url: "https://random-data-api.com/api/users/random_user",
+      });
+
+      console.log(res);
+
+      sendResponse({
+        response: "success",
+      });
+    })();
   }
+
+  return true;
 });
 
 function handleSwitchAccountLoginStatus(tab2) {
@@ -87,4 +104,8 @@ function getCurrentUserInfo() {
       alert(JSON.stringify(cookie));
     }
   );
+}
+
+function a() {
+  console.log("e");
 }

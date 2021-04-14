@@ -9,8 +9,13 @@ export function run() {
         whatToDo: "addAccount",
         username: username,
       },
+      {},
       function (response) {
-        alert(response);
+        if (response == undefined)
+          return alert(
+            "An error occurred when getting the response from the background."
+          );
+        alert(response.response);
       }
     );
   };
