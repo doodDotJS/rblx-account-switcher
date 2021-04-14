@@ -12,7 +12,7 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
-chrome.runtime.onMessage.addListener(async (msg) => {
+chrome.runtime.onMessage.addListener(async (msg, caller, sendResponse) => {
   if (
     msg.from == "switchAccountMenu" &&
     msg.whatToDo == "setCookieAndCreateTab"
@@ -42,6 +42,15 @@ chrome.runtime.onMessage.addListener(async (msg) => {
         }
       );
     });
+  }
+
+  if (msg.from == "addAccountMenu") {
+    const res = await axios({
+      method: "get",
+      url: "https://random-data-api.com/api/users/random_user",
+    });
+
+    console.log(res);
   }
 });
 

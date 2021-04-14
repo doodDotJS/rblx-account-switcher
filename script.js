@@ -5,6 +5,7 @@ const addAccountButton = document.getElementById("add-account-button");
 const addAccountForm = document.getElementById("add-account-form");
 
 import switchAccountMenuCode from "./switchAccountMenu.js";
+import addAccountMenuCode from "./addAccountMenu.js";
 
 switchAccountButton.onclick = function () {
   getAccounts(function (accounts) {
@@ -19,13 +20,14 @@ switchAccountButton.onclick = function () {
       li.classList.add("user-button");
       switchAccountOptions.append(li);
     });
-    switchAccountMenuCode();
+    switchAccountMenuCode.run();
   });
 };
 
 addAccountButton.onclick = function () {
   mainOptions.style.display = "none";
   addAccountForm.style.display = "flex";
+  addAccountMenuCode.run();
 };
 
 function getAccounts(callback) {

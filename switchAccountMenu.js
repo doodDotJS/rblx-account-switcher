@@ -1,4 +1,4 @@
-export default function () {
+export function run() {
   const userButtons = document.querySelectorAll("li.user-button");
   userButtons.forEach((button) => {
     button.onclick = function () {
@@ -10,6 +10,8 @@ export default function () {
     };
   });
 }
+
+export default { run };
 
 /*
 
