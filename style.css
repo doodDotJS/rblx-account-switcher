@@ -60,3 +60,49 @@ body {
   background-color: rgb(54, 54, 54);
   cursor: pointer;
 }
+
+.add-account-form {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-family: Poppins, sans-serif;
+}
+
+.add-account-form .title {
+  font-weight: bold;
+  font-size: larger;
+  margin-bottom: 0.5rem;
+}
+
+.add-account-username-label {
+  align-self: flex-start;
+  font-weight: bold;
+  font-family: inherit;
+}
+
+.add-account-username {
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  background: #484848;
+  outline: none;
+  border: none;
+  padding: 0.3em;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  color: #fff;
+}
+
+#add-account-submit-button {
+  padding: 0.5em;
+  outline: none;
+  border: none;
+  background: #464646;
+  color: #fff;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
