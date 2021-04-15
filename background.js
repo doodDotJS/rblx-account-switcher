@@ -45,8 +45,6 @@ chrome.runtime.onMessage.addListener((msg, caller, sendResponse) => {
 
   if (msg.from == "addAccountMenu") {
   }
-
-  return true;
 });
 
 function handleSwitchAccountLoginStatus(tab2) {

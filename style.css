@@ -96,7 +96,8 @@ body {
   color: #fff;
 }
 
-#add-account-submit-button {
+#add-account-submit-button,
+.logged-in-submit-button {
   padding: 0.5em;
   outline: none;
   border: none;
