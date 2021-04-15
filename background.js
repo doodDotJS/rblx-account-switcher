@@ -63,6 +63,22 @@ chrome.runtime.onMessage.addListener((msg, caller, sendResponse) => {
     );
   }
 
+  if (msg.from == "removeAccountMenu" && msg.whatToDo == "removeAccount") {
+    chrome.storage.sync.get(["accounts"], function (currentData) {
+      const newArrayOfAccounts = currentData.accounts.filter((obj) => {
+        return obj.username != msg.username;
+      });
+
+      chrome.storage.sync.set(
+        {
+          accounts: newArrayOfAccounts,
+        },
+        function () {
+          sendResponse("SUCCESS");
+        }
+      );
+    });
+  }
   return true;
 });
 

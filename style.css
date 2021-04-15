@@ -111,6 +111,7 @@ body {
 .remove-account-menu {
   list-style: none;
   display: none;
+  font-family: Poppins, sans-serif;
 }
 
 .remove-account-menu .title {
