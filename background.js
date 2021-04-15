@@ -1,13 +1,8 @@
 chrome.runtime.onInstalled.addListener(() => {
   console.log("RBLX Account Switcher | Ready");
+
   chrome.storage.sync.set({
-    accounts: [
-      {
-        username: "dudeSafiyur1234",
-        cookie:
-          "_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.HEU3YJMDHJH2GH UR MUM ",
-      },
-    ],
+    accounts: [],
   });
 });
 
@@ -44,7 +39,31 @@ chrome.runtime.onMessage.addListener((msg, caller, sendResponse) => {
   }
 
   if (msg.from == "addAccountMenu") {
+    console.log(msg);
+    chrome.cookies.get(
+      {
+        name: ".ROBLOSECURITY",
+        url: "https://*.roblox.com/*",
+      },
+      function (cookie) {
+        chrome.storage.sync.get(["accounts"], function (currentData) {
+          chrome.storage.sync.set(
+            {
+              accounts: [
+                ...currentData.accounts,
+                { username: msg.username, cookie: cookie.value },
+              ],
+            },
+            function () {
+              sendResponse("SUCCESS");
+            }
+          );
+        });
+      }
+    );
   }
+
+  return true;
 });
 
 function handleSwitchAccountLoginStatus(tab2) {
@@ -53,7 +72,7 @@ function handleSwitchAccountLoginStatus(tab2) {
       message: "Seems to have logged in successfully!",
       type: "basic",
       title: "Login successful?",
-      iconUrl: "./A.png",
+      iconUrl: "./images/A.png",
     });
   } else {
     chrome.notifications.create(
@@ -61,7 +80,7 @@ function handleSwitchAccountLoginStatus(tab2) {
         message: "Login seems to have failed. The token probably expired.",
         type: "basic",
         title: "Login failed?",
-        iconUrl: "/A.png",
+        iconUrl: "/images/A.png",
       },
       function (id) {
         console.log(id, "not logged in");

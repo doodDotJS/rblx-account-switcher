@@ -12,6 +12,22 @@ export function run() {
     loggedInButton.style.marginTop = ".5rem";
     loggedInButton.innerText = "Logged in";
     addAccountForm.append(loggedInButton);
+
+    loggedInButton.onclick = function () {
+      chrome.runtime.sendMessage(
+        {
+          from: "addAccountMenu",
+          whatToDo: "addAccount",
+          username: username.value,
+        },
+        {},
+        function (response) {
+          if (response == "SUCCESS") {
+            addAccountForm.innerText = "Successfully added account.";
+          }
+        }
+      );
+    };
   };
 }
 

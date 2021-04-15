@@ -9,6 +9,7 @@ import addAccountMenuCode from "./addAccountMenu.js";
 
 switchAccountButton.onclick = function () {
   getAccounts(function (accounts) {
+    console.log(accounts);
     mainOptions.style.display = "none";
     switchAccountOptions.style.display = "flex";
     if (accounts.length == 0)
