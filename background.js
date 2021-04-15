@@ -38,7 +38,7 @@ chrome.runtime.onMessage.addListener((msg, caller, sendResponse) => {
     });
   }
 
-  if (msg.from == "addAccountMenu") {
+  if (msg.from == "addAccountMenu" && msg.whatToDo == "addAccount") {
     console.log(msg);
     chrome.cookies.get(
       {

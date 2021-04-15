@@ -107,3 +107,23 @@ body {
   cursor: pointer;
   border-radius: 0.5rem;
 }
+
+.remove-account-menu {
+  list-style: none;
+  display: none;
+}
+
+.remove-account-menu .title {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.remove-account-menu li {
+  color: inherit;
+  font-family: inherit;
+  padding: 0.5em;
+  background-color: rgb(54, 54, 54);
+  cursor: pointer;
+  margin-top: 0.5rem;
+  font-weight: bolder;
+}
