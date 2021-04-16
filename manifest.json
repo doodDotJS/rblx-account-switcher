@@ -16,7 +16,7 @@
     "https://*.roblox.com/*"
   ],
   "browser_action": {
-    "default_popup": "index.html"
+    "default_popup": "popup.html"
   },
   "content_security_policy": "script-src 'self' https://cdn.jsdelivr.net; object-src 'self'"
 }

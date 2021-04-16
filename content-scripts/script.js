@@ -9,9 +9,18 @@ const addAccountForm = document.getElementById("add-account-form");
 const removeAccountButton = document.getElementById("remove-account-button");
 const removeAccountMenu = document.getElementById("remove-account-menu");
 
+const settingsButton = document.getElementById("settings-button");
+
 import switchAccountMenuCode from "./switchAccountMenu.js";
 import addAccountMenuCode from "./addAccountMenu.js";
 import removeAccountMenuCode from "./removeAccountMenu.js";
+
+settingsButton.onclick = function () {
+  chrome.tabs.create({
+    url: "/pages/settings.html",
+    active: true,
+  });
+};
 
 switchAccountButton.onclick = function () {
   getAccounts(function (accounts) {
