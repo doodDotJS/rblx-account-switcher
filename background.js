@@ -18,6 +18,7 @@ chrome.runtime.onMessage.addListener((msg, caller, sendResponse) => {
       const foundAccount = data.accounts.find(
         (obj) => obj.username == msg.username
       );
+
       chrome.cookies.set({
         url: "https://*.roblox.com/*",
         httpOnly: true,
@@ -110,7 +111,7 @@ function handleSwitchAccountLoginStatus(tab2) {
         message: "Seems to have logged in successfully!",
         type: "basic",
         title: "Login successful?",
-        iconUrl: "./images/A.png",
+        iconUrl: "./images/icon128.png",
       });
     } else {
       chrome.notifications.create(
@@ -118,7 +119,7 @@ function handleSwitchAccountLoginStatus(tab2) {
           message: "Login seems to have failed. The token probably expired.",
           type: "basic",
           title: "Login failed?",
-          iconUrl: "/images/A.png",
+          iconUrl: "/images/icon128.png",
         },
         function (id) {
           console.log(id, "not logged in");
