@@ -3,6 +3,9 @@ chrome.runtime.onInstalled.addListener(() => {
 
   chrome.storage.sync.set({
     accounts: [],
+    settings: {
+      showNotifications: true,
+    },
   });
 });
 
@@ -72,6 +75,23 @@ chrome.runtime.onMessage.addListener((msg, caller, sendResponse) => {
       chrome.storage.sync.set(
         {
           accounts: newArrayOfAccounts,
+          settings: currentData.settings,
+        },
+        function () {
+          sendResponse("SUCCESS");
+        }
+      );
+    });
+  }
+
+  if (msg.from == "settings" && msg.whatToDo == "updateSettings") {
+    chrome.storage.sync.get(["settings"], function (currentData) {
+      chrome.storage.sync.set(
+        {
+          settings: {
+            showNotifications: stringToBool(msg.showNotifications),
+          },
+          accounts: currentData.accounts,
         },
         function () {
           sendResponse("SUCCESS");
@@ -115,4 +135,14 @@ function getCurrentUserInfo() {
       alert(JSON.stringify(cookie));
     }
   );
+}
+
+function stringToBool(str) {
+  if (str == "true") {
+    return true;
+  } else if (str == "false") {
+    return false;
+  } else {
+    return true;
+  }
 }
