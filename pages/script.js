@@ -4,7 +4,6 @@ const showNotificationSwitch = document.getElementById(
 );
 
 chrome.storage.sync.get(["settings"], function (data) {
-  console.log(String(data.settings.showNotifications));
   showNotificationSwitch.dataset.active = String(
     data.settings.showNotifications
   );
@@ -21,7 +20,7 @@ saveChangesButton.onclick = function () {
     },
     {},
     function (response) {
-      alert(response);
+      if (response == "SUCCESS") alert("Successfully applied changes.");
     }
   );
 };

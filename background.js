@@ -103,26 +103,29 @@ chrome.runtime.onMessage.addListener((msg, caller, sendResponse) => {
 });
 
 function handleSwitchAccountLoginStatus(tab2) {
-  if (tab2.url == "https://www.roblox.com/home") {
-    chrome.notifications.create({
-      message: "Seems to have logged in successfully!",
-      type: "basic",
-      title: "Login successful?",
-      iconUrl: "./images/A.png",
-    });
-  } else {
-    chrome.notifications.create(
-      {
-        message: "Login seems to have failed. The token probably expired.",
+  chrome.storage.sync.get(["settings"], function (data) {
+    if (data.settings.showNotifications == false) return;
+    if (tab2.url == "https://www.roblox.com/home") {
+      chrome.notifications.create({
+        message: "Seems to have logged in successfully!",
         type: "basic",
-        title: "Login failed?",
-        iconUrl: "/images/A.png",
-      },
-      function (id) {
-        console.log(id, "not logged in");
-      }
-    );
-  }
+        title: "Login successful?",
+        iconUrl: "./images/A.png",
+      });
+    } else {
+      chrome.notifications.create(
+        {
+          message: "Login seems to have failed. The token probably expired.",
+          type: "basic",
+          title: "Login failed?",
+          iconUrl: "/images/A.png",
+        },
+        function (id) {
+          console.log(id, "not logged in");
+        }
+      );
+    }
+  });
 }
 
 function getCurrentUserInfo() {
